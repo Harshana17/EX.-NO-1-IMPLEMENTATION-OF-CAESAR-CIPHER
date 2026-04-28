@@ -17,29 +17,47 @@ STEP-5: Display the cipher text obtained above.
 
 ## PROGRAM:
 ```
-def caesar_encrypt(text, shift):
-    result = ""
-    for char in text:
-        if char.isalpha():
-            shift_base = ord('A') if char.isupper() else ord('a')
-            result += chr((ord(char) - shift_base + shift) % 26 + shift_base)
-        else:
-            result += char 
-    return result
-def caesar_decrypt(cipher, shift):
-    return caesar_encrypt(cipher, -shift)  
-plaintext = "Hello World!"
-shift = 3
-encrypted = caesar_encrypt(plaintext, shift)
-decrypted = caesar_decrypt(encrypted, shift)
-print("Plaintext :", plaintext)
-print("Encrypted :", encrypted)
-print("Decrypted :", decrypted)
+#include <stdio.h> 
+#include <string.h> 
+#include <ctype.h> 
+void main() 
+{ 
+    char plain[10],cipher[10]; 
+    int key,i,length; 
+    int result; 
+    printf("\n Enter the plain text:"); 
+    scanf("%s", plain); 
+    printf("\n Enter the key value:"); 
+    scanf("%d", &key); 
+    printf("\n \n \t PLAIN TEXt: %s", plain); 
+    printf("\n \n \t ENCRYPTED TEXT:"); 
+    for(i=0, length = strlen(plain); i<length; i++) 
+    { 
+        cipher[i]=plain[i] + key; 
+        if (isupper(plain[i]) && (cipher[i] > 'Z')) 
+        cipher[i] = cipher[i] - 26; 
+        if (islower(plain[i]) && (cipher[i] > 'z')) 
+        cipher[i] = cipher[i] - 26; 
+        printf("%c", cipher[i]); 
+    } 
+    printf("\n \n \t AFTER DECRYPTION : "); 
+    for(i=0;i<length;i++) 
+    { 
+        plain[i]=cipher[i]-key; 
+        if(isupper(cipher[i])&&(plain[i]<'A')) 
+        plain[i]=plain[i]+26; 
+        if(islower(cipher[i])&&(plain[i]<'a')) 
+        plain[i]=plain[i]+26; 
+        printf("%c",plain[i]); 
+    } 
+}
 ```
 
 ## OUTPUT:
 
-<img width="1161" height="314" alt="image" src="https://github.com/user-attachments/assets/2b5e07e5-2fcd-450c-ba85-49a040b274d8" />
+<img width="1684" height="897" alt="image" src="https://github.com/user-attachments/assets/42261983-8f10-4fee-9789-671b6ceb1854" />
+
+
 
 
 ## RESULT :
